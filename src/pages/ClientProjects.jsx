@@ -1,0 +1,2 @@
+import Layout from "../components/Layout"; import ProjectCard from "../components/ProjectCard"; import { getCurrentUser, getProjects } from "../utils/storage";
+function ClientProjects() { const projects = getProjects().filter((p) => p.clientId === getCurrentUser().id); return <Layout><header className="page-header"><div><p className="eyebrow">CLIENT PORTAL</p><h1>My projects</h1></div></header><div className="card-grid">{projects.length ? projects.map((p) => <ProjectCard key={p.id} project={p} />) : <p>No projects yet.</p>}</div></Layout>; } export default ClientProjects;

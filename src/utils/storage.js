@@ -1,35 +1,6 @@
-const demoUsers = [
-  {
-    id: "admin-1",
-    name: "Platform Admin",
-    email: "admin@freelancehub.com",
-    password: "admin123",
-    role: "admin",
-  },
-  {
-    id: "client-1",
-    name: "Aarav Client",
-    email: "client@gmail.com",
-    password: "1234",
-    role: "client",
-  },
-  {
-    id: "freelancer-1",
-    name: "Maya Freelancer",
-    email: "freelancer@gmail.com",
-    password: "1234",
-    role: "freelancer",
-  },
-];
+import demoData from "../data/demoData.json";
 
-const demoProjects = [
-  { id: "project-1", clientId: "client-1", title: "Portfolio Website", description: "Build a responsive portfolio website for a design studio.", category: "Web Development", budget: 25000, skills: "React, CSS, JavaScript", deadline: "2026-12-20", status: "open" },
-  { id: "project-2", clientId: "client-1", title: "Social Media Graphics", description: "Create launch graphics for a small brand.", category: "Design", budget: 12000, skills: "Figma, Canva", deadline: "2026-12-15", status: "in-progress" },
-];
-
-const demoProposals = [
-  { id: "proposal-1", projectId: "project-2", freelancerId: "freelancer-1", bid: 11000, deliveryTime: "5 days", coverLetter: "I can create a polished visual system for your launch.", status: "accepted" },
-];
+const { users: demoUsers, projects: demoProjects, proposals: demoProposals, reviews: demoReviews } = demoData;
 
 const write = (key, value) => localStorage.setItem(key, JSON.stringify(value));
 
@@ -59,7 +30,7 @@ export function initializeData() {
 
   if (!localStorage.getItem("projects")) write("projects", demoProjects);
   if (!localStorage.getItem("proposals")) write("proposals", demoProposals);
-  if (!localStorage.getItem("reviews")) write("reviews", []);
+  if (!localStorage.getItem("reviews")) write("reviews", demoReviews);
 }
 
 export const getUsers = () => read("users");

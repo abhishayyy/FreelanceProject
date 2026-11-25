@@ -42,12 +42,14 @@ export const saveProposals = (items) => write("proposals", items);
 
 export const getCurrentUser = () => {
   try {
-    return JSON.parse(localStorage.getItem("currentUser"));
+    return JSON.parse(sessionStorage.getItem("currentUser"));
   } catch {
     return null;
   }
 };
 
-export const setCurrentUser = (user) => localStorage.setItem("currentUser", JSON.stringify(user));
-export const logout = () => localStorage.removeItem("currentUser");
+// Session Storage is per browser tab, so a client, freelancer, and admin
+// can be tested at the same time without one login replacing another.
+export const setCurrentUser = (user) => sessionStorage.setItem("currentUser", JSON.stringify(user));
+export const logout = () => sessionStorage.removeItem("currentUser");
 export const userById = (id) => getUsers().find((user) => user.id === id);
